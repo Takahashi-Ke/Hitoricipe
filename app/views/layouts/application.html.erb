@@ -10,6 +10,24 @@
   </head>
 
   <body>
+    <header>
+      <div class="logo"></div>
+      <div class="nav">
+        <% if user_signed_in? %>
+          <ul class="nav-list">
+            <li><%= link_to 'レシピを書く', new_recipe_path %></li>
+            <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
+            <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <ul class="nav-list">
+            <li></li>
+            <li><%= link_to 'ログイン', new_user_session_path %></li>
+            <li><%= link_to '新規登録', new_user_registration_path %></li>
+            </ul>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
