@@ -1,0 +1,19 @@
+<h1>みんなのレシピ</h1>
+<% @recipes.each do |recipe| %>
+  <h3><%= recipe.title %></h3>
+  <div class="image-tag">
+    <%= link_to recipe_path(recipe.id) do %>
+      <%= attachment_image_tag recipe, :recipe_image, :fill, 150, 150, format: 'jpeg' %>
+    <% end %>
+  </div>
+  <div class="post-user">
+    <p> by
+      <%= link_to user_path(recipe.user.id) do %>
+        <span><%= recipe.user.name %></span>
+      <% end %>
+    </p>
+  </div>
+  <div class="post-contents">
+    <%= recipe.infomation %>
+  </div>
+<% end %>

@@ -1,0 +1,17 @@
+
+  <h1><%= @recipe.title %></h1>
+  <div class="image-tag">
+    <%= attachment_image_tag @recipe, :recipe_image, :fill, 300, 300, format: 'jpeg' %>
+  </div>
+  <div class="post-user">
+    <p> by
+      <%= link_to user_path(@recipe.user.id) do %>
+        <span><%= @recipe.user.name %></span>
+      <% end %>
+    </p>
+  </div>
+  <div class="post-body">
+    <%= @recipe.infomation %>
+    <p>作り方</p>
+    <%= simple_format(@recipe.how_to) %>
+  </div>

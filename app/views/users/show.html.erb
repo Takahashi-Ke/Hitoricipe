@@ -1,3 +1,34 @@
 <h1>ユーザ画面</h1>
 
+<% if @user.id == current_user.id %>
+  <h3>マイプロフィール</h3>
+<% else %>
+  <h3><span><%= @user.name %></span> さんのプロフィール</h3>
+<% end %>
+<%= attachment_image_tag @user, :user_image, :fill, 40, 40, fallback: "no_image.png", size:'40x40' %>
 <p><%= @user.name %></p>
+<p><%= @user.introduction %></p>
+
+<div class="recipe-wrapper">
+  <div class="container">
+  <% @recipes.each do |recipe| %>
+    <h3><%= recipe.title %></h3>
+    <div class="image-tag">
+      <%= link_to recipe_path(recipe.id) do %>
+        <%= attachment_image_tag recipe, :recipe_image, :fill, 150, 150, format: 'jpeg' %>
+      <% end %>
+    </div>
+    <div class="post-user">
+      <p> by
+        <%= link_to user_path(recipe.user.id) do %>
+          <span><%= recipe.user.name %></span>
+        <% end %>
+      </p>
+    </div>
+    <div class="post-contents">
+      <%= recipe.infomation %>
+    </div>
+  <% end %>
+  </div>
+</div>
+

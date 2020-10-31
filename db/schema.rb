@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_073854) do
+ActiveRecord::Schema.define(version: 2020_10_31_055526) do
 
   create_table "recipes", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_073854) do
     t.string "title"
     t.text "infomation"
     t.text "how_to"
-    t.string "recipe_image"
+    t.string "recipe_image_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_10_29_073854) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.text "introduction"
+    t.string "user_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

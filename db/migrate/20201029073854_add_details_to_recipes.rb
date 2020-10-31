@@ -4,6 +4,5 @@ class AddDetailsToRecipes < ActiveRecord::Migration[5.2]
     add_column :recipes, :title, :string
     add_column :recipes, :infomation, :text
     add_column :recipes, :how_to, :text
-    add_column :recipes, :recipe_image, :string
   end
 end

@@ -6,13 +6,23 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id
     @recipe.save
-    redirect_to recipe_path(@recipe.id)
+    redirect_to recipes_path
+    logger.debug @recipe.errors.inspect
+  end
+
+  def index
+    @recipes = Recipe.all
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :infomation, :how_to)
+    params.require(:recipe).permit(:title, :infomation, :how_to, :recipe_image)
   end
 
 end

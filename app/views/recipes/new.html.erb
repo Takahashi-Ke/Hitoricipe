@@ -1,10 +1,26 @@
 <h1>レシピを投稿する</h1>
 
-<%= form_with model: @recipe, local: true do |f| %>
-  <p>レシピのタイトル</p>
-  <%= f.text_field :title, placeholder: 'サバの味噌煮' %>
-  <p>レシピ紹介文</p>
-  <%= f.text_area :infomation, placeholder: '100文字まで' %>
-  <p>作り方</p>
-  <%= f.text_area :how_to, placeholder: ' ' %>
-<% end %>
+
+<div class="container">
+  <%= form_with model: @recipe, local: true do |f| %>
+    <div class="field">
+      <p>レシピのタイトル</p>
+      <%= f.text_field :title, placeholder: 'サバの味噌煮' %>
+    </div>
+    <div class="field">
+      <%= f.attachment_field :recipe_image %>
+    </div>
+    <div class="field">
+      <p>レシピ紹介文</p>
+      <%= f.text_area :infomation, placeholder: '100文字まで' %>
+    </div>
+    <div class="field">
+     <p>作り方</p>
+      <%= f.text_area :how_to, placeholder: '' %>
+    </div>
+    <div class="btn">
+      <%= f.submit 'レシピ投稿' %>
+    </div>
+  <% end %>
+</div>
+
