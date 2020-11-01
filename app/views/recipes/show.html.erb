@@ -1,17 +1,40 @@
 
-  <h1><%= @recipe.title %></h1>
-  <div class="image-tag">
+<h1><%= @recipe.title %></h1>
+<div class="image-tag">
     <%= attachment_image_tag @recipe, :recipe_image, :fill, 300, 300, format: 'jpeg' %>
-  </div>
-  <div class="post-user">
-    <p> by
-      <%= link_to user_path(@recipe.user.id) do %>
-        <span><%= @recipe.user.name %></span>
+</div>
+<div class="post-user">
+  <p> by
+    <%= link_to user_path(@recipe.user.id) do %>
+      <span><%= @recipe.user.name %></span>
+    <% end %>
+  </p>
+</div>
+<div class="post-body">
+  <%= @recipe.infomation %>
+  <p>作り方</p>
+  <%= simple_format(@recipe.how_to) %>
+</div>
+
+<ol>
+  <% @recipe.post_comments.each do |post_comment| %>
+    <li>
+      <%= attachment_image_tag post_comment.user, :user_image, :fill, 50, 50 %>
+      <%= link_to user_path(post_comment.id) do %>
+        <%= post_comment.user.name %>
       <% end %>
-    </p>
-  </div>
-  <div class="post-body">
-    <%= @recipe.infomation %>
-    <p>作り方</p>
-    <%= simple_format(@recipe.how_to) %>
-  </div>
+      <%= post_comment.comment %>
+      <% if post_comment.user_id == current_user.id %>
+        <%= button_to "削除", recipe_post_comment_path(post_comment.recipe, post_comment), method: :delete %>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
+
+
+<div class="new-comment">
+  <%= form_with(model:[@recipe, @post_comment], local: true) do |f| %>
+    <%= f.text_area :comment %>
+    <%= f.submit "コメントを書く" %>
+  <% end %>
+</div>

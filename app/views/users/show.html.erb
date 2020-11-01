@@ -1,13 +1,16 @@
-<h1>ユーザ画面</h1>
-
-<% if @user.id == current_user.id %>
-  <h3>マイプロフィール</h3>
-<% else %>
-  <h3><span><%= @user.name %></span> さんのプロフィール</h3>
-<% end %>
-<%= attachment_image_tag @user, :user_image, :fill, 40, 40, fallback: "no_image.png", size:'40x40' %>
-<p><%= @user.name %></p>
-<p><%= @user.introduction %></p>
+<div class="profile">
+  <% if @user.id == current_user.id %>
+    <h3>マイプロフィール</h3>
+  <% else %>
+    <h3><span><%= @user.name %></span> さんのプロフィール</h3>
+  <% end %>
+  <%= attachment_image_tag @user, :user_image, :fill, 250, 250, fallback: "no_image.png" %>
+  <p><%= @user.name %></p>
+  <p><%= @user.introduction %></p>
+  <% if @user.id == current_user.id %>
+    <%= link_to 'プロフィール編集', edit_user_path(@user.id) %>
+  <% end %>
+</div>
 
 <div class="recipe-wrapper">
   <div class="container">

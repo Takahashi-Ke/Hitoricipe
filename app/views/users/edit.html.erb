@@ -1,0 +1,36 @@
+<h1>登録情報編集</h1>
+
+<%= form_with model: @user, local: true do |f| %>
+  <div class="edit-image">
+    <h3>プロフィール画像の変更</h3>
+    <%= attachment_image_tag @user, :user_image, :fill, 100, 100, fallback: "no_image.png" %>
+    <span><%= f.attachment_field :user_image %></span>
+  </div>
+
+
+  <div class="edit-name">
+    <h3>ニックネームの変更</h3>
+    <table>
+      <tbody>
+        <tr>
+          <th>現在のニックネーム</th>
+          <th><%= @user.name %></th>
+        </tr>
+        <tr>
+          <th>新しいネックネーム</th>
+          <th><%= f.text_field :name %></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="edit-introduction">
+    <h3>プロフィール紹介文の変更</h3>
+    <%= f.text_area :introduction %>
+  </div>
+  <%= f.submit '変更する' %>
+
+<% end %>
+
+
+
+
